@@ -33,6 +33,20 @@ def add():
             entry = Entry(title=title, description=description)
             db.session.add(entry)
             db.session.commit()
+            return "ok", 200
+
+    return "ko", 400
+
+@app.route("/add2", methods=["POST"])
+def add2():
+    if request.method == "POST":
+        form = request.form
+        title = form.get("title")
+        description = form.get("description")
+        if not title or description:
+            entry = Entry(title=title, description=description)
+            db.session.add(entry)
+            db.session.commit()
             return redirect("/")
 
     return "of the jedi"
