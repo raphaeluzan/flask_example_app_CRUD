@@ -11,7 +11,27 @@ Application developed with python & flask for learning purposes
 - [ ] Interact with the sqlite application
 - [x] Use docker-compose to launch and create the dockerized application
 
+
+## How to run it locally
+
+```
+git clone https://github.com/raphaeluzan/flask_example_app_CRUD.git
+cd example-flask-crud/
+python3 -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+export FLASK_APP=crudapp.py
+flask db init
+flask db migrate -m "entries table"
+flask db upgrade
+export FLASK_ENV=development
+flask run
+```
+
+
 ## Flask Get endpoint (client side)
+
 
 ### CURL way
 
@@ -49,19 +69,3 @@ $ curl -XPOST http://localhost:5000/add -d "title=a&description=atetetetettete"
 * open the application in browser
 `http://localhost:8000/index`
 
-## How to run 
-
-```
-git clone https://github.com/raphaeluzan/flask_example_app_CRUD.git
-cd example-flask-crud/
-python3 -m venv venv
-source venv/bin/activate
-pip install --upgrade pip
-pip install -r requirements.txt
-export FLASK_APP=crudapp.py
-flask db init
-flask db migrate -m "entries table"
-flask db upgrade
-export FLASK_ENV=development
-flask run
-```
