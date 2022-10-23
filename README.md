@@ -8,8 +8,8 @@ Application developed with python & flask for learning purposes
 - [x] Flask CRUD endpoint (serveur side)
 - [x] Flask CRUD endpoint (client side)
 - [x] UI with flask and template
-- [ ] Dockerise this application
-- [ ] use docker compose to launch and create the dockerized application
+- [ ] Interact with the sqlite application
+- [x] Use docker-compose to launch and create the dockerized application
 
 ## Flask Get endpoint (client side)
 
@@ -37,7 +37,17 @@ print(res.text)
 ```
 $ curl -XPOST http://localhost:5000/add -d "title=a&description=atetetetettete"
 ```
+## use docker-compose to launch and create the dockerized 
 
+* open docker 
+* build the image
+`docker-compose build`
+
+* launch the image
+`docker-compose up`
+
+* open the application in browser
+`http://localhost:8000/index`
 
 ## How to run 
 

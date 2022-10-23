@@ -1,0 +1,10 @@
+version: "2"
+services:
+  crudapp:
+    container_name: crudapp
+    image: crudapp
+    build: .
+    env_file: .env
+    command: sh -c "flask db upgrade && gunicorn crudapp:app -w 2 -b :8000"
+    ports:
+      - "8000:8000"
