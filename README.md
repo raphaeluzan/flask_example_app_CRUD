@@ -7,12 +7,7 @@ Application developed with python & flask for learning purposes
 - [ ] Flask Get endpoint (client side)
 - [x] Flask CRUD endpoint (serveur side)
 - [ ] Flask CRUD endpoint (client side)
-- [x]UI with flask and template
-- [ ] Jupiter
-- [ ] Saturn
-- [ ] Uranus
-- [ ] Neptune
-- [ ] Comet Haley
+- [x] UI with flask and template
 
 ## How to run 
 

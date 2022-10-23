@@ -4,82 +4,85 @@ from app.models import Entry
 import json
 
 
-
 def dict_response_in_string_format(data):
     res = {}
     for i in data:
-        res[i.id] = {'title': i.title, 'content': i.description}
+        res[i.id] = {"title": i.title, "content": i.description}
     return json.dumps({"reponse": str(res)})
 
-@app.route('/')
+
+@app.route("/")
 def indexx():
     entries = Entry.query.all()
     return dict_response_in_string_format(entries)
 
 
-@app.route('/index')
+@app.route("/index")
 def index():
     entries = Entry.query.all()
-    return render_template('index.html', entries=entries)
+    return render_template("index.html", entries=entries)
 
-@app.route('/add', methods=['POST'])
+
+@app.route("/add", methods=["POST"])
 def add():
-    if request.method == 'POST':
+    if request.method == "POST":
         form = request.form
-        title = form.get('title')
-        description = form.get('description')
+        title = form.get("title")
+        description = form.get("description")
         if not title or description:
-            entry = Entry(title = title, description = description)
+            entry = Entry(title=title, description=description)
             db.session.add(entry)
             db.session.commit()
-            return redirect('/')
+            return redirect("/")
 
     return "of the jedi"
 
-@app.route('/update/<int:id>')
+
+@app.route("/update/<int:id>")
 def updateRoute(id):
     if not id or id != 0:
         entry = Entry.query.get(id)
         if entry:
-            return render_template('update.html', entry=entry)
+            return render_template("update.html", entry=entry)
 
     return "of the jedi"
 
-@app.route('/update/<int:id>', methods=['POST'])
+
+@app.route("/update/<int:id>", methods=["POST"])
 def update(id):
     if not id or id != 0:
         entry = Entry.query.get(id)
         if entry:
             form = request.form
-            title = form.get('title')
-            description = form.get('description')
+            title = form.get("title")
+            description = form.get("description")
             entry.title = title
             entry.description = description
             db.session.commit()
-        return redirect('/')
+        return redirect("/")
 
     return "of the jedi"
 
 
-
-@app.route('/delete/<int:id>')
+@app.route("/delete/<int:id>")
 def delete(id):
     if not id or id != 0:
         entry = Entry.query.get(id)
         if entry:
             db.session.delete(entry)
             db.session.commit()
-        return redirect('/')
+        return redirect("/")
 
     return "of the jedi"
 
-@app.route('/turn/<int:id>')
+
+@app.route("/turn/<int:id>")
 def turn(id):
     if not id or id != 0:
         entry = Entry.query.get(id)
         if entry:
             entry.status = not entry.status
             db.session.commit()
-        return redirect('/')
+        return redirect("/")
 
     return "of the jedi"
